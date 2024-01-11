@@ -8,8 +8,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.client.RestTemplate;
 
-import static org.springframework.boot.SpringApplication.run;
-
 /**
  * This is a class that is used to run your application.
  *
@@ -17,13 +15,21 @@ import static org.springframework.boot.SpringApplication.run;
  *
  */
 @SpringBootApplication
+@EnableAutoConfiguration
+@Controller
 public class SocialMediaApp {
     /**
      * Runs the application
      * @param args The arguments of the program.
      * @throws InterruptedException 
      */
-    public static void main(String[] args) throws InterruptedException {
+
+    public static void main(String[] args) {
         SpringApplication.run(SocialMediaApp.class, args);
+    }
+
+    @Bean
+    public RestTemplate restTemplate(RestTemplateBuilder builder) {
+        return builder.build();
     }
 }
